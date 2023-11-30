@@ -12,12 +12,15 @@ const DropdownMenu = ({ options, onSelect }) => {
         setSelectedOption(option);
         setIsOpen(false);
         onSelect(option);
+        setSelectedOption(null);
     };
 
+    const displayText = selectedOption ? selectedOption.label : 'Select a season';
+    
     return (
         <div className="dropdown">
             <button onClick={handleToggle} className="dropdown-toggle">
-                {selectedOption ? selectedOption.label : 'Select an option'}
+                {displayText}
             </button>
 
             {isOpen && options && options.length > 0 && (
