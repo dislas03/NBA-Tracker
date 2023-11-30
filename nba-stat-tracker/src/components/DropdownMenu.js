@@ -23,8 +23,8 @@ const DropdownMenu = ({ options, onSelect }) => {
             {isOpen && options && options.length > 0 && (
                 <ul className="dropdown-menu">
                     {options.map((option) => (
-                <li key={option.value} onClick={() => handleOptionClick(option)}>
-                        {option.label}
+                <li key={option.id} onClick={() => handleOptionClick(option)}>
+                        <button>{option}</button>
                         </li>
                 ))}
                 </ul>

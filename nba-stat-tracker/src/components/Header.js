@@ -3,7 +3,7 @@ import DropdownMenu from "./DropdownMenu";
 function Header() {
     
     const [seasons, setSeasons] = useState([]);
-    const [selectedSeason, setSelectedSeason] = useState(null)
+    const [selectedSeason, setSelectedSeason] = useState()
 
     useEffect(() => { 
        const fetchData = async () => {
@@ -32,17 +32,17 @@ function Header() {
                 const result = await response.json();
                 console.log('API Result:', result);
 
-                if(!result.api || !result.api.seasons){
+                if(!result.response || !Array.isArray(result.response)){
                     console.error('Unexpected API response format:', result)
                     return;
                 }
 
-                setSeasons(result.api.seasons);
+                setSeasons(result.response);
 
-                const initialSeason = result.api.seasons.find(season => season.value === 2022);
+                const initialSeason = result.response.find(season => season === 2023);
                 setSelectedSeason(initialSeason)
 
-                console.log('Seasons:', result.api.seasons)
+                console.log('Seasons:', result.response)
             } catch (error) {
                 console.error('Fetch Error:',error)
             }
